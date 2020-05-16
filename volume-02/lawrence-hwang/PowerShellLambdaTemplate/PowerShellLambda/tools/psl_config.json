@@ -1,0 +1,7 @@
+{
+  "psl_default": {
+    "lambdaname": "[[LambdaName]]",
+    "s3bucketname": "[[S3BucketName]]",
+    "AWSRegion": "[[AWSRegion]]"
+  }
+}

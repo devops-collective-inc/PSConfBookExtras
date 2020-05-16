@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plasterManifest schemaVersion="1.1" templateType="Project"
+  xmlns="http://www.microsoft.com/schemas/PowerShell/Plaster/v1">
+  <metadata>
+    <name>PowershellLambda</name>
+    <id>c52b3a1b-c68e-4bca-be55-97dbc0ef5aea</id>
+    <version>1.7.0</version>
+    <title>NewPowershellLambda</title>
+    <description>A PowerShell Plaster template to scaffolding a new PowerShell Lambda function with AWS SAM model.</description>
+    <author>Lawrence Hwang</author>
+    <tags>aws, PowerShell, Lambda</tags>
+  </metadata>
+  <parameters>
+    <parameter  name = 'LambdaName'
+                type = 'text'
+                prompt = 'Please enter name of your Lambda function/ application'/>
+    <parameter  name = 'AWSRegion'
+                type = 'text'
+                prompt = 'The AWS region that the Lambda will be deployed to. (e.g. us-west-2)'/>
+    <parameter  name = 'S3BucketName'
+                type = 'text'
+                prompt = 'The pre-created S3 bucket name. The bucket needs to be in the same region as the lambda. (e.g. MyLambdaBucket)'/>
+  </parameters>
+  <content>
+    <message>
+    Scaffolding your new PowerShell Lambda project '$PLASTER_PARAM_LambdaName}'.
+    </message>
+    <file source = 'PowerShellLambda\tools\DeployLambda.ps1'
+      destination = '${PLASTER_PARAM_LambdaName}\tools\DeployLambda.ps1'/>
+    <file source = 'PowerShellLambda\tools\InvokeLambda.ps1'
+      destination = '${PLASTER_PARAM_LambdaName}\tools\InvokeLambda.ps1'/>
+    <file source = 'PowerShellLambda\tools\PackageLambda.ps1'
+      destination = '${PLASTER_PARAM_LambdaName}\tools\PackageLambda.ps1'/>
+    <file source = 'PowerShellLambda\tools\psl_config.json'
+      destination = '${PLASTER_PARAM_LambdaName}\tools\psl_config.json'/>
+    <file source = 'PowerShellLambda\tools\psl_cfnparam.property'
+      destination = '${PLASTER_PARAM_LambdaName}\tools\psl_cfnparam.property'/>
+    <file source = 'PowerShellLambda\src\PowerShellLambda.ps1'
+      destination = '${PLASTER_PARAM_LambdaName}\src\${PLASTER_PARAM_LambdaName}.ps1'/>
+    <file source = 'PowerShellLambda\src\PowerShellLambda.tests.ps1'
+      destination = '${PLASTER_PARAM_LambdaName}\src\${PLASTER_PARAM_LambdaName}.tests.ps1'/>
+    <file source = 'PowerShellLambda\tools\sample-vscode-tasks.json'
+      destination = '${PLASTER_PARAM_LambdaName}\.vscode\tasks.json'/>
+    <file source = 'PowerShellLambda\src\serverless.template'
+      destination = '${PLASTER_PARAM_LambdaName}\src\${PLASTER_PARAM_LambdaName}-serverless.template'/>
+    <file source = 'PowerShellLambda\artifact\*'
+      destination = '${PLASTER_PARAM_LambdaName}\artifact\'/>
+    <modify path='${PLASTER_PARAM_LambdaName}\src\${PLASTER_PARAM_LambdaName}.tests.ps1' encoding='UTF8'>
+      <replace>
+        <original>\[\[LambdaName\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_LambdaName</substitute>
+      </replace>
+    </modify>
+    <modify path='${PLASTER_PARAM_LambdaName}\tools\DeployLambda.ps1' encoding='UTF8'>
+      <replace>
+        <original>\[\[LambdaName\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_LambdaName</substitute>
+      </replace>
+    </modify>
+    <modify path='${PLASTER_PARAM_LambdaName}\tools\InvokeLambda.ps1' encoding='UTF8'>
+      <replace>
+        <original>\[\[LambdaName\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_LambdaName</substitute>
+      </replace>
+    </modify>
+    <modify path='${PLASTER_PARAM_LambdaName}\tools\PackageLambda.ps1' encoding='UTF8'>
+      <replace>
+        <original>\[\[LambdaName\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_LambdaName</substitute>
+      </replace>
+    </modify>
+    <modify path='${PLASTER_PARAM_LambdaName}\tools\psl_config.json' encoding='UTF8'>
+      <replace>
+        <original>\[\[LambdaName\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_LambdaName</substitute>
+      </replace>
+    </modify>
+    <modify path='${PLASTER_PARAM_LambdaName}\tools\psl_config.json' encoding='UTF8'>
+      <replace>
+        <original>\[\[S3BucketName\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_S3BucketName</substitute>
+      </replace>
+    </modify>
+    <modify path='${PLASTER_PARAM_LambdaName}\tools\psl_config.json' encoding='UTF8'>
+      <replace>
+        <original>\[\[AWSRegion\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_AWSRegion</substitute>
+      </replace>
+    </modify>
+    <modify path='${PLASTER_PARAM_LambdaName}\src\${PLASTER_PARAM_LambdaName}-serverless.template' encoding='UTF8'>
+      <replace>
+        <original>\[\[LambdaName\]\]</original>
+        <substitute expand='true'>$PLASTER_PARAM_LambdaName</substitute>
+      </replace>
+    </modify>
+    <requireModule name = 'AWSPowerShell'
+                  minimumVersion = '3.3.390.0'
+                  message = 'You need AWSPowerShell module for PowerShell Lambda. Please install the modle from PSGallery.'/>
+    <requireModule name = 'AWSLambdaPSCore'
+                  minimumVersion = '1.1.0.0'
+                  message = 'You need AWSLambdaPSCore module for PowerShell Lambda. Please install the modle from PSGallery.'/>
+    <message>
+    Your new PowerShell Lambda project '$PLASTER_PARAM_LambdaName' has been created.
+    </message>
+  </content>
+</plasterManifest>

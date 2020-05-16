@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Parameters:
+  EnvironmentTag:
+    Type: String
+    Default: dev
+Resources:
+  MyPSLambdaAppFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: 'MyPSLambdaApp::MyPSLambdaApp.Bootstrap::ExecuteFunction'
+      Runtime: dotnetcore2.1
+      CodeUri: ../artifact/MyPSLambdaApp.zip
+      MemorySize: 512
+      Timeout: 60
+      Role:
+        'Fn::GetAtt':
+          - LambdaRole
+          - Arn
+      Environment:
+        Variables: {}
+      Tags:
+        Environment:
+          Ref: EnvironmentTag
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /
+            Method: get
+  LambdaRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      # The following is an example of how to additional policies to the Lambda role to allow Lambda access other AWS resources.
+      #Policies:
+      #  -
+      #    PolicyName:
+      #      'Fn::Sub': 'LambdaPolicy-${AWS::StackName}'
+      #    PolicyDocument:
+      #      Version: '2012-10-17'
+      #      Statement:
+      #        -
+      #          Action:
+      #            - 's3:*'
+      #          Effect: Allow
+      #          Resource: '*'
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          -
+            Action:
+              - 'sts:AssumeRole'
+            Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+Outputs:
+  LambdaName:
+    Description: Name of the Lambda
+    Value:
+      Ref: MyPSLambdaAppFunction
+    Export:
+      Name:
+        Fn::Sub:
+          ${AWS::StackName}-MyPSLambdaAppFunction
+  LambdaArn:
+    Description: Arn of the Lambda
+    Value:
+      Fn::GetAtt:
+        - MyPSLambdaAppFunction
+        - Arn
+    Export:
+      Name:
+        Fn::Sub:
+          ${AWS::StackName}-MyPSLambdaAppFunctionArn

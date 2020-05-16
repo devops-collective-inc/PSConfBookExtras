@@ -1,0 +1,23 @@
+[Version]
+Signature="$Windows NT$"
+
+[certsrv_server]
+RenewalKeyLength=4096
+RenewalValidityPeriod=Years
+RenewalValidityPeriodUnits=10
+
+CRLPeriod=Days
+CRLPeriodUnits=30
+CRLDeltaPeriod=Days
+CRLDeltaPeriodUnits=7
+
+
+[extensions]
+2.5.29.15 = AwIBhg==
+critical = 2.5.29.15
+
+[CRLDistributionPoint]
+URL=http://crl1.pkilab.local/pkilab/PKILab-RootCA.crl
+[AuthorityInformationAccess]
+URL=http://crl1.pkilab.local/pkilab/PKILab-RootCA.crt
+

@@ -1,0 +1,22 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "DeployLambda",
+            "type": "shell",
+            "command": "pwsh -f '${fileDirname}/../tools/DeployLambda.ps1'"
+        },
+        {
+            "label": "InvokeLambda",
+            "type": "shell",
+            "command": "pwsh -f '${fileDirname}/../tools/InvokeLambda.ps1'"
+        },
+        {
+            "label": "PackageLambda",
+            "type": "shell",
+            "command": "pwsh -f '${fileDirname}/../tools/PackageLambda.ps1'"
+        }
+    ]
+}

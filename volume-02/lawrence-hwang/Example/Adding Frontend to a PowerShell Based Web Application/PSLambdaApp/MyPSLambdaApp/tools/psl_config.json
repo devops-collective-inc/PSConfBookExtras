@@ -1,0 +1,7 @@
+{
+  "psl_default": {
+    "lambdaname": "MyPSLambdaApp",
+    "s3bucketname": "<Replace with your bucket name>",
+    "AWSRegion": "us-west-2"
+  }
+}

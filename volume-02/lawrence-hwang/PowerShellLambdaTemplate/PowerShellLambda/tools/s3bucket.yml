@@ -1,0 +1,11 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Creates a S3 bucket with default options.
+Resources:
+  s3bucket:
+    Type: AWS::S3::Bucket
+Outputs:
+  s3bucketname:
+    Description: S3 Bucket Name
+    Value:
+      Ref: s3bucket
