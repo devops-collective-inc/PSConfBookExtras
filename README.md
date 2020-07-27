@@ -6,4 +6,4 @@ Community members are also encouraged to fix any issues they may find in the ext
 
 * [Volume 1 extras](volume-01/)
 * [Volume 2 extras](volume-02/)
-* [Volume 3 extras](volume-01/)
+* [Volume 3 extras](volume-03/)
