@@ -1,4 +1,4 @@
-﻿short,flavor
+﻿﻿short,flavor
 Sweet.*,Sweet Cream
 Peanut.*,Peanut Butter
 Jamocha.*, Jamocha
@@ -16,6 +16,13 @@ Maple.*, Maple Almond
 Burgundy.*, Burgundy Cherry
 Nutella.*, Nutella
 Blackberry.*, Blackberry
-Coconut.*, Coconut
+Coco.*, Coconut
 Key Lime.*, Key Lime
 Banana.*, Banana Pudding
+Peach.*, Peach
+Raspberry.*, Raspberry
+S'mores.*, S'mores
+Lemon.*, Lemon
+Blueberry.*, Blueberry
+Pina.*, Pina Colada
+Cake.*, Cake Batter
