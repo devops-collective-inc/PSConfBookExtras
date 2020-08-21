@@ -4,6 +4,12 @@ Extra files by Frank Lesniak
 
 Adopted from the ROMSorter project in the [author's GitHub repo](https://github.com/franklesniak/ROMSorter). Visit the repo for updated code or more ROM Package analysis tools.
 
+## Legal Disclaimer
+
+Unless a software license, author, or publisher states differently, obtaining, using, or distributing commercial software products without paying for them is illegal, immoral, and unethical.
+Accordingly, this chapter focuses on using arcade games that are understood to be free to use or possible for you to purchase.
+Please do not commit software piracy by illegally downloading, using, or distributing commercial arcade games.
+
 ## Arcade Emulation and ROM-Sorting
 
 Please read the [Arcade Emulator Background Info page](./ARCADE_EMULATOR_BACKGROUND_INFO.md) before getting started; it includes highly-recommended background information.
